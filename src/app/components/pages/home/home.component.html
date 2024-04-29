@@ -1,7 +1,8 @@
 <app-search></app-search>
+<app-tags></app-tags>
 <ul>
   <li *ngFor="let food of foods">
-    <a routerLink="/food/{{food.id}}">
+    <a (click)="goto(food.id)">
       <img [src]="food.imageUrl" [alt]="food.name" />
       <div class="content">
         <div class="name">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/shared/models/food';
 
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   foods!: Food[];
 
-  constructor(private _foodService: FoodService, private _activatedRoutes: ActivatedRoute) {
+  constructor(private _foodService: FoodService, private _activatedRoutes: ActivatedRoute, private _router: Router) {
     this._activatedRoutes.params.subscribe((params: any) => {
 
       if(params.searchTerm) {
@@ -25,11 +25,14 @@ export class HomeComponent implements OnInit {
         this.foods =this._foodService.getAll();
       }
       console.log(this.foods, "tuyebfulyvweuygfu");
-
     });
-
   }
 
   ngOnInit(): void { }
+
+  goto(id: string) {
+    this._router.navigate([`food/${id}`]);
+  }
+
 
 }

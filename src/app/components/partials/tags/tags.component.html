@@ -1,0 +1,10 @@
+<div *ngIf="tags">
+  <a
+    *ngFor="let tag of tags"
+    routerLinkActive="active"
+    (click)="goto(tag.name)"
+    [ngClass]="{ 'selected-tag': selectedTag === tag.name }"
+  >
+    {{ tag.name }}({{ tag.count }})
+  </a>
+</div>
