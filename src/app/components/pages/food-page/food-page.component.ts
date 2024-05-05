@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { FavoriteService } from 'src/app/services/favorite.service';
 import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/shared/models/food';
 
@@ -13,9 +14,13 @@ export class FoodPageComponent implements OnInit {
 
   food!: Food[];
 
-  constructor(private _activatedRoutes: ActivatedRoute, private _foodService: FoodService, private _router: Router, private _cartService: CartService) {
-    console.log(this.food, "this si shit");
-
+  constructor(private _activatedRoutes: ActivatedRoute,
+    private _foodService: FoodService,
+    private _router: Router,
+    private _cartService: CartService,
+    private _favoriteService: FavoriteService) {
+      this._favoriteService.getFavoriteObservable().subscribe((resp: any) => {
+      })
     _activatedRoutes.params.subscribe((params: any) => {
       if (params.id) {
         this.food = this._foodService.getFoodById(params.id);
@@ -24,6 +29,11 @@ export class FoodPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  markFavorite(food: Food) {
+    this._favoriteService.addToFavorite(food);
 
   }
 

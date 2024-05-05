@@ -1,0 +1,40 @@
+
+<div *ngFor="let favorite of favorite" class="container">
+  <img [src]="favorite.imageUrl" [alt]="favorite.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{favorite.name}}
+      </span>
+      <span [ngClass]="favorite.favorite == true ? 'favorite' : 'favorite-not'">❤</span>
+    </div>
+    <div class="rating">
+    </div>
+
+    <div class="origins">
+      <span *ngFor="let origin of favorite.origins">
+        {{origin}}
+      </span>
+    </div>
+
+    <div class="tags">
+      <a *ngFor="let tag of favorite.tags" routerLink="/tag/{{tag}}">
+        {{tag}}
+      </a>
+    </div>
+
+    <div class="cook-time">
+      <span>
+        Time to cook about <strong>{{favorite.cookTime}}</strong> minutes
+      </span>
+    </div>
+
+    <div class="price">
+      <span>
+        {{favorite.price | currency}}
+      </span>
+    </div>
+    <button>Add To Cart</button>
+  </div>
+</div>

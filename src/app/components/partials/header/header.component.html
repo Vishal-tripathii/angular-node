@@ -20,6 +20,11 @@
             Cart <span *ngIf="cartQuantity">{{cartQuantity}}</span>
           </a>
         </li>
+        <li>
+          <a routerLink="/favorite-page">
+            Favorites <span *ngIf="favoriteQuantity">{{favoriteQuantity}}</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

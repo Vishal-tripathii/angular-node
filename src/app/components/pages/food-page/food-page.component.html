@@ -7,7 +7,7 @@
       <span class="name">
         {{food.name}}
       </span>
-      <span class="favorite {{food.favorite? '': 'not'}}">❤</span>
+      <span (click)="markFavorite(food)" [ngClass]="food.favorite == true ? 'favorite' : 'favorite-not'">❤</span>
     </div>
     <div class="rating">
     </div>
