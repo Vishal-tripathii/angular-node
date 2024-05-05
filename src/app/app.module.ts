@@ -11,6 +11,7 @@ import { TagsComponent } from './components/partials/tags/tags.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { TitleComponent } from './components/partials/title/title.component';
 import { FavoritePageComponent } from './components/partials/favorite-page/favorite-page.component';
+import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FavoritePageComponent } from './components/partials/favorite-page/favor
     TagsComponent,
     CartComponent,
     TitleComponent,
-    FavoritePageComponent
+    FavoritePageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
