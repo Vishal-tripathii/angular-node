@@ -12,7 +12,7 @@ import { Food } from 'src/app/shared/models/food';
 })
 export class FoodPageComponent implements OnInit {
 
-  food!: Food[];
+  food!: Food;
 
   constructor(private _activatedRoutes: ActivatedRoute,
     private _foodService: FoodService,
@@ -23,7 +23,11 @@ export class FoodPageComponent implements OnInit {
       })
     _activatedRoutes.params.subscribe((params: any) => {
       if (params.id) {
-        this.food = this._foodService.getFoodById(params.id);
+        this._foodService.getFoodById(params.id).subscribe(serverFood => {
+
+          this.food = serverFood;
+          console.log(this.food, "foodbyId");
+        });
       }
     })
   }
