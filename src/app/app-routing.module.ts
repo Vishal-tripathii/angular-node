@@ -4,6 +4,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { FoodPageComponent } from './components/pages/food-page/food-page.component';
 import { CartComponent } from './components/pages/cart/cart.component';
 import { FavoritePageComponent } from './components/partials/favorite-page/favorite-page.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'favorite-page',
     component: FavoritePageComponent
+  },
+  {
+    path: 'login-page',
+    component: LoginPageComponent
   }
 ];
 
