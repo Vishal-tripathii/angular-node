@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,10 +12,12 @@ export class LoginPageComponent implements OnInit {
 
   loginForm!: FormGroup; // we cannot use this loginForm inside our html without reactivemodels
   isSubmitted: boolean = false;
+  returnUrl: string = ''
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder, private _userService: UserService, private _router: Router, private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.returnUrl = this._activatedRoute.snapshot.queryParams.returnUrl // here returnUrl contains the latest router
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -31,9 +35,9 @@ export class LoginPageComponent implements OnInit {
       return
     }
     else {
-      alert(`email: ${this.fc['email'].value},
-      password: ${this.fc['password'].value}`
-      )
+     this._userService.login({email: this.fc.email.value, password: this.fc.password.value}).subscribe(() => {
+       this._router.navigateByUrl(this.returnUrl)
+     })
     }
   }
 
