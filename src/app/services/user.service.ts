@@ -33,6 +33,12 @@ export class UserService {
     )
   }
 
+  logout() {
+    this.userSubject.next(new User()) // ?
+    localStorage.removeItem(USER_KEY); // removing item from localstografe
+    window.location.reload();
+  }
+
   private setUserToLocalStorage(user: User) {
     localStorage.setItem(USER_KEY, JSON.stringify(user))
   }

@@ -36,6 +36,16 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.user, "this is uSERRER");
+    
+  }
+
+  logout() {
+    this._userService.logout()
+  }
+
+  get isAuth() {
+    return this.user.token
   }
 
 }
