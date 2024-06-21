@@ -1,0 +1,7 @@
+<app-input-container [label]="label">
+    <input [type]="type" name="" id="" [placeholder]="label" [formControl]="formControl" />
+    <app-input-validation 
+      [control]="formControl" 
+      [showErrorsWhen]="showErrorsWhen">
+    </app-input-validation>
+  </app-input-container>
