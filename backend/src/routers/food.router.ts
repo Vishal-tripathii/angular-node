@@ -1,11 +1,24 @@
 import {Router} from 'express'
 import { sample_foods, sample_tags } from '../data';
+import asyncHandler from 'express-async-handler'
+import { FoodModel } from '../models/food.modal';
 
 const router = Router();
 
+router.get('/seed', asyncHandler(
+    async(req, resp) => {
+        const foodCount = await FoodModel.countDocuments();
+        if(foodCount > 0) {
+            resp.send("Seeding is already DONE!!");
+            return;
+        }
+
+        await FoodModel.create(sample_foods);
+        resp.send("new seed is DONE!!")
+    }
+))
+
 // in server.ts we've defined /api/foods to the food router, so here we dont need to define that again
-
-
 router.get('/', (req, resp) => {
     resp.send(sample_foods);
 });
