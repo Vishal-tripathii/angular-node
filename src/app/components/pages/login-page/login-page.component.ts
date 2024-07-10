@@ -18,6 +18,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnUrl = this._activatedRoute.snapshot.queryParams.returnUrl // here returnUrl contains the latest router
+    console.log(this.returnUrl, "login-page");
+    
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]

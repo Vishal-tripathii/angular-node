@@ -3,7 +3,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../shared/models/user';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
-import { USER_LOGIN_URL } from '../shared/constants/urls';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import { IUserRegister } from '../shared/interfaces/IUserRegister';
 
 const USER_KEY = 'User'
 
@@ -27,9 +28,22 @@ export class UserService {
         next: (user) => {
           console.log("User has sucessfully logged in", user)
           this.setUserToLocalStorage(user)
+          this.userSubject.next(user)
         },
         error: (error) => console.log("An error has occured", error)
       })
+    )
+  }
+
+  register(userRegister: IUserRegister): Observable<User> {
+    return this._http.post(USER_REGISTER_URL, userRegister).pipe(
+     tap({
+      next: (user: any) => {
+        this.setUserToLocalStorage(user);
+        this.userSubject.next(user)
+      },
+      error: (error) => console.log("error in regitering user", error)
+     })
     )
   }
 

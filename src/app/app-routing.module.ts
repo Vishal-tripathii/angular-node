@@ -5,6 +5,7 @@ import { FoodPageComponent } from './components/pages/food-page/food-page.compon
 import { CartComponent } from './components/pages/cart/cart.component';
 import { FavoritePageComponent } from './components/partials/favorite-page/favorite-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'login-page',
     component: LoginPageComponent
+  },
+  {
+    path: 'register-page',
+    component: RegisterPageComponent
   }
 ];
 

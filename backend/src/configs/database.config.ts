@@ -5,8 +5,6 @@ dotenv.config();
 
 export const dbConnect = () => {
     const mongoURI = process.env.MONGO_URI;
-    console.log(mongoURI, "Thsi is my mongo URI");
-    
     connect(process.env.MONGO_URI!, { 
         useNewUrlParser: true,
         useUnifiedTopology: true
