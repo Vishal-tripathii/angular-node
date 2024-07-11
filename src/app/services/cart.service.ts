@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cart } from '../shared/models/cart';
-import { BehaviorSubject, Observable, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { Food } from '../shared/models/food';
 import { CartItem } from '../shared/models/cartItems';
 
@@ -15,22 +15,18 @@ export class CartService {
   constructor() { }
 
   addToCart(food: Food): void {
-    console.log("currentFood", food);
-    console.log(this.cart.items, "this is cartItems");
-
-
     let cartItem = this.cart.items.find(item => item.food.id === food.id);
-    console.log(cartItem, "this is cart Items");
-
     if (cartItem) {
       return ;
     }
     this.cart.items.push(new CartItem(food));
-    console.log(this.cart.items, "RIYAAL");
-
     this.setCartToLocalStorage();
 
 
+  }
+
+  getCart(): Cart {
+    return this.cartSubject.value; // this would always gives latest value of cart
   }
 
   removeFromCart(foodId: string): void {
@@ -69,7 +65,7 @@ export class CartService {
   private getCartFromLocalStorage(): Cart{
     const cartJSON = localStorage.getItem('Cart');
     return cartJSON ? JSON.parse(cartJSON) : new Cart()
- }
+  }
 
 
 }

@@ -20,6 +20,10 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable()
   }
 
+  public get currentUser(): User {
+    return this.userSubject.value // gets the latest value of user
+  }
+
   login(userLogin: IUserLogin): Observable<User> {
     console.log(userLogin, "this is user login");
 
