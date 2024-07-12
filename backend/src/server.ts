@@ -3,6 +3,7 @@ import cors from 'cors'
 import FoodRouter from "./routers/food.router"
 import UserRouter from "./routers/user.router"
 import { dbConnect } from './configs/database.config'
+import OrderRouter from './routers/order.router'
 
 dbConnect();
 
@@ -16,6 +17,8 @@ app.use(cors({
 app.use(express.json());
 app.use('/api/foods', FoodRouter);
 app.use('/api/users', UserRouter)
+app.use('/api/orders', OrderRouter)
+
 
 app.listen(port, () => {
     console.log("website is hosted on http://localhost:", port);
