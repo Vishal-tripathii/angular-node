@@ -22,8 +22,6 @@ import { DefaultButtonComponent } from './components/partials/default-button/def
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { OrderItemsListComponent } from './components/partials/order-items-list/order-items-list.component';
-import { AuthInterceptor } from './auth/auth.interceptor';
-import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +43,6 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
     RegisterPageComponent,
     CheckoutPageComponent,
     OrderItemsListComponent,
-    PaymentPageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +51,7 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
     ReactiveFormsModule
 
   ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
