@@ -22,6 +22,8 @@ import { DefaultButtonComponent } from './components/partials/default-button/def
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { CheckoutPageComponent } from './components/pages/checkout-page/checkout-page.component';
 import { OrderItemsListComponent } from './components/partials/order-items-list/order-items-list.component';
+import { LoadingComponent } from './components/partials/loading/loading.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { OrderItemsListComponent } from './components/partials/order-items-list/
     RegisterPageComponent,
     CheckoutPageComponent,
     OrderItemsListComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,9 @@ import { OrderItemsListComponent } from './components/partials/order-items-list/
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
